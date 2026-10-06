@@ -1,6 +1,0 @@
-.DS_Store
-__pycache__/
-*.pyc
-.venv/
-Project 1/data/*.csv
-Project 1/data/baseline_submission.csv

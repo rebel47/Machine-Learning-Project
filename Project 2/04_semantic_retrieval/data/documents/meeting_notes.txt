@@ -1,0 +1,2 @@
+Computer vision meeting notes.
+The team will review OCR evaluation, document cleanup, and model errors on Friday.

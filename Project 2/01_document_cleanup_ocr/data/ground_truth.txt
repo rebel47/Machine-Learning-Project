@@ -1,0 +1,13 @@
+technical details are too complex to cover in the book itself.
+In teaching our courses, we have found it useful for the students to attempt a number of
+small implementation projects, which often build on one another, in order to get them used to
+working with real-world images and the challenges that these present. The students are then
+asked to choose an individual topic for each of their small-group, final projects. (Sometimes
+these projects even turn into conference papers!) The exercises at the end of each chapter
+contain numerous suggestions for smaller mid-term projects, as well as more open-ended
+problems whose solutions are still active research topics. Wherever possible, I encourage
+students to try their algorithms on their own personal photographs, since this better motivates
+them, often leads to creative variants on the problems, and better acquaints them with the
+variety and complexity of real-world imagery.
+In formulating and solving computer vision problems, I have often found it useful to draw
+inspiration from three high-level approaches:

@@ -1,55 +1,51 @@
 # 04 — Semantic Document Retrieval
 
-## Goal
+## What you will learn
 
-Rank documents for a query using vector similarity. This connects OCR output to a
-retrieval or RAG system.
+You will turn a small document collection into vectors, rank it for a query with
+cosine similarity, compare lexical TF-IDF with dense embeddings, and evaluate
+retrieval with Recall@k and reciprocal rank.
 
-## Run
+## Folder contents
 
-The zero-download baseline uses TF-IDF vectors:
-
-```bash
-python 04_semantic_retrieval/retrieve.py "travel reimbursement"
+```text
+data/documents/*.txt  small searchable corpus
+data/imageTextN.png   example source document image
+data/source.txt       image source information
+output/               rankings.csv and similarity plot
+project.ipynb         complete guided experiment
 ```
 
-After installing `requirements-embeddings.txt`, compare a dense text encoder:
+The TF-IDF lesson works with the base environment. For Sentence Transformers:
 
 ```bash
-python 04_semantic_retrieval/retrieve.py "travel reimbursement" --backend sbert
+python -m pip install -r requirements-embeddings.txt
 ```
 
-To search rendered document images with a text query:
+## Core ideas
 
-```bash
-python 04_semantic_retrieval/retrieve.py "a receipt for coffee" --backend clip
-```
+- **TF-IDF** produces sparse lexical vectors. It is fast and interpretable but
+  usually misses synonyms that share no words.
+- **Dense embeddings** learn a vector space where semantically related text may
+  be close even without exact token overlap.
+- **Cosine similarity** compares vector direction: the dot product after length
+  normalization.
+- **Recall@k** asks whether a relevant result appears in the first `k` items.
+  **Reciprocal rank** rewards putting the first relevant result near the top.
 
-The script creates a tiny demo corpus automatically. Use `--corpus path/to/txts`
-for your OCR text. Matching `.png` files are needed for CLIP.
+OCR is a retrieval bottleneck: an embedding model cannot recover text OCR omitted.
+Image encoders such as CLIP can preserve layout/visual evidence, but may miss exact
+numbers. Real systems often combine lexical, dense, and visual scores, then rerank.
 
-## Model ideas
+## Check your understanding
 
-- **TF-IDF** is a sparse lexical representation. It is fast and interpretable but
-  usually cannot match synonyms that share no tokens.
-- **Dense text embeddings** map sentences into vectors whose geometry captures
-  learned semantic similarity. They cost more and inherit model/domain biases.
-- **Cosine similarity** is the normalized dot product. It compares direction
-  rather than raw vector magnitude.
-- **CLIP** maps images and text into a shared space. It may retrieve based on
-  visual layout even when OCR is poor, but fine details and exact numbers remain
-  difficult.
+1. Query with a synonym not present in the target text. Compare both backends.
+2. Remove important words from one document to simulate OCR loss.
+3. Change unigram TF-IDF to `(1, 2)` n-grams. What improves or worsens?
+4. Add five labeled queries and calculate mean reciprocal rank.
+5. Explain why high cosine similarity is not a calibrated probability.
 
-Text-only retrieval has an OCR bottleneck: missing text cannot be recovered by a
-later embedding model. Visual and multimodal representations provide complementary
-signals. In production, retrieve candidates and then rerank with a stronger model.
+## Completion criterion
 
-## Evaluation and exercises
-
-Create queries with known relevant documents and report Recall@k or MRR instead
-of showing only appealing examples.
-
-1. Query using a synonym absent from the target document. Compare TF-IDF/SBERT.
-2. Corrupt OCR text and plot retrieval performance against CER.
-3. Build a hybrid score: `alpha * text_similarity + (1-alpha) * image_similarity`.
-4. Chunk a long document by page/section. How does chunk size affect retrieval?
+You are finished when `output/rankings.csv` exists and you can explain one query
+where lexical and semantic retrieval rank documents differently.

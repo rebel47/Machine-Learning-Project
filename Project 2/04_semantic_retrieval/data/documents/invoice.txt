@@ -1,0 +1,2 @@
+Invoice 1042 from Northwind Office Supplies.
+The total amount due is EUR 249.00. Payment is required within fourteen days.

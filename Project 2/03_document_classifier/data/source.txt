@@ -1,0 +1,8 @@
+Image: imageTextN.png
+Source: https://raw.githubusercontent.com/opencv/opencv/4.x/samples/data/imageTextN.png
+Repository: https://github.com/opencv/opencv
+License: OpenCV is distributed under the Apache License 2.0.
+Downloaded: 2026-10-08
+
+The notebook generates a separate labeled synthetic dataset under data/generated/.
+The real downloaded image is for visual inspection and later inference practice.

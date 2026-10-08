@@ -2,64 +2,52 @@
 
 ## Research question
 
-**Which document degradations hurt OCR most, and when does preprocessing help?**
+**Which types of document degradation hurt OCR most, and when does preprocessing
+help?**
 
-This project turns the earlier lessons into a small controlled experiment. It
-applies blur, Gaussian noise, rotation, low contrast, and occlusion at increasing
-severity, then measures raw and preprocessed OCR with CER.
+You will add controlled blur, noise, rotation, low contrast, and occlusion to a
+real text image. For every degradation and severity, the notebook compares raw
+OCR with an Otsu/deskew preprocessing pipeline using CER.
 
-## Run
-
-```bash
-python 05_noisy_ocr_experiment/experiment.py --make-demo --levels 4
-```
-
-Results are saved under `outputs/05_robustness/` as degraded images, `results.csv`,
-and `cer_plot.png`. Use real data with matching basenames:
+## Folder contents
 
 ```text
-my_data/
-├── images/page_01.png
-└── ground_truth/page_01.txt
+data/imageTextN.png    clean source image
+data/ground_truth.txt  reference transcription
+data/source.txt        image source information
+output/degraded/       generated corrupted images
+output/results.csv     measurements
+output/cer_plot.png    robustness curves
+project.ipynb          complete research-style experiment
 ```
 
-```bash
-python 05_noisy_ocr_experiment/experiment.py --data my_data
-```
+Open `project.ipynb` in Jupyter and run top to bottom. Tesseract must be installed.
 
 ## Experimental design
 
-- **Independent variables:** degradation type/severity and preprocessing on/off.
-- **Dependent variable:** CER.
-- **Controls:** same source pages, OCR engine/configuration, random seed, and
-  evaluation normalization.
-- **Ablation:** compare raw OCR with exactly one preprocessing pipeline.
+- **Independent variables:** degradation type, severity, and preprocessing.
+- **Dependent variable:** normalized CER.
+- **Controls:** source page, OCR settings, random seed, and normalization.
+- **Ablation:** raw OCR versus exactly one fixed preprocessing pipeline.
 
-Synthetic degradation is useful because severity and ground truth are controlled,
-but it is not identical to real historical damage. Validate conclusions on real
-scans. Average results over multiple pages and seeds, and show variation—not only
-the mean.
+Synthetic damage offers controlled severity and perfect ground truth, but it does
+not reproduce all properties of historical scans. A sound conclusion must be
+validated on multiple real pages and random seeds, with uncertainty—not only a
+mean curve.
 
-## How to interpret results
+Deskewing should target rotation; thresholding may recover moderate low contrast;
+neither can reconstruct occluded text. At high noise, binarization may amplify
+artifacts. Inspect the saved images and OCR text whenever a number surprises you.
 
-Look for curves and interactions, not merely the best row. Deskewing should target
-rotation; thresholding may restore moderate low contrast; neither can reconstruct
-text hidden by occlusion. At high noise, binarization may amplify artifacts.
-Unexpected outcomes are valuable: inspect saved images and OCR text, then refine
-the hypothesis.
+## Check your understanding
 
-## Extensions
+1. Predict the most damaging degradation before running the notebook.
+2. Explain one case where preprocessing makes the result worse.
+3. Add JPEG compression, stains, or bleed-through.
+4. Repeat across random seeds and add error bars.
+5. Break CER down into digits, punctuation, and alphabetic characters.
 
-1. Add stains, JPEG compression, bleed-through, and nonuniform illumination.
-2. Run several random seeds and add confidence intervals.
-3. Compare Tesseract with EasyOCR or a vision-language model.
-4. Break CER down by digits, punctuation, and alphabetic characters.
-5. Test combinations of degradations, while noting the larger experiment matrix.
+## Completion criterion
 
-## Research-style summary template
-
-“We evaluated OCR on _n_ documents under five controlled degradations and _k_
-severity levels. Rotation/blur caused the largest CER increase. Preprocessing
-helped under ___ but hurt under ___, likely because ___. The key limitation is
-that synthetic corruption does not reproduce the full distribution of historical
-scans.”
+You are finished when you can summarize the method, result, limitation, and next
+experiment in four sentences, supported by `results.csv` and `cer_plot.png`.

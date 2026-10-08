@@ -1,63 +1,58 @@
 # 01 — Document Cleanup and OCR
 
-## Goal
+## What you will learn
 
-Observe how image preprocessing changes both pixels and recognized text. The
-pipeline is deliberately explicit:
+You will turn a scanned text image into grayscale, remove noise, create a binary
+image, estimate skew, and compare Tesseract OCR before and after preprocessing.
+Every stage is displayed before it is saved, so you can connect the code to the
+pixel-level result.
 
-`color image → grayscale → denoise → binarize → deskew → Tesseract`
+## Folder contents
 
-## Run
-
-From the `Project 2` directory:
-
-```bash
-python 01_document_cleanup_ocr/run.py --make-demo
+```text
+data/imageTextN.png    real text image from the OpenCV sample repository
+data/ground_truth.txt  manual reference transcription
+data/source.txt        download URL and license note
+output/                generated stage images and OCR text
+project.ipynb          complete executable lesson
 ```
 
-Or process your own page:
+## Start the lesson
+
+From the `Project 2` folder, activate the environment and launch Jupyter:
 
 ```bash
-python 01_document_cleanup_ocr/run.py path/to/page.jpg --threshold adaptive
+source .venv/bin/activate
+jupyter lab
 ```
 
-Outputs include every intermediate image under `outputs/01_cleanup/stages` and
-method-specific text under `raw` and `preprocessed`. Try `--no-deskew`,
-`--threshold otsu`, and `--threshold adaptive`.
+Open `01_document_cleanup_ocr/project.ipynb` and run cells in order.
 
-Evaluate the demo outputs in project 2:
+## Core ideas
 
-```bash
-python 02_ocr_evaluation/evaluate.py \
-  --ground-truth outputs/demo_documents/ground_truth \
-  --predictions raw=outputs/01_cleanup/raw clean=outputs/01_cleanup/preprocessed \
-  --normalize
-```
+- **Grayscale** reduces RGB color to one intensity channel. Printed OCR usually
+  depends more on foreground/background contrast than color.
+- **Denoising** removes small intensity changes. Too much smoothing also removes
+  thin strokes, punctuation, and accents.
+- **Binarization** assigns pixels to foreground or background. Otsu finds one
+  global threshold; adaptive thresholding handles uneven local illumination.
+- **Deskewing** estimates the dominant text angle and rotates the page back.
+- **OCR** is normally detection → recognition → post-processing. Tesseract's page
+  segmentation mode tells it what layout to expect.
 
-## What each operation does
+Preprocessing is not automatically helpful. A visually clean thresholded image
+may have lost information needed by the recognizer. Compare text with CER/WER in
+project 2 rather than judging only by appearance.
 
-- **Grayscale** reduces three color channels to intensity. Text recognition
-  usually needs contrast more than color.
-- **Denoising** suppresses isolated pixel variation, but too much blurs thin
-  strokes and punctuation.
-- **Binarization** separates foreground from background. Otsu chooses one global
-  threshold; adaptive thresholding chooses a local threshold and often handles
-  uneven lighting better.
-- **Deskewing** estimates the dominant orientation of foreground pixels and
-  rotates the page. Large layout elements can confuse this simple estimator.
-- **Perspective correction** maps a photographed quadrilateral to a rectangle.
-  `common.preprocessing.four_point_transform` implements it when corners are known.
+## Check your understanding
 
-## Questions and exercises
+1. Why can adaptive thresholding outperform Otsu under uneven lighting?
+2. What character features might disappear after aggressive denoising?
+3. Change Tesseract from page segmentation mode 6 to 3. What changes?
+4. Rotate the input by 5 degrees and verify whether deskewing recovers it.
+5. Find a preprocessing setting that makes OCR worse and explain why.
 
-1. Photograph a page under uneven light. Which threshold works best, and why?
-2. Increase denoising. Which characters disappear first?
-3. Compare `--psm 6` (one text block) with `--psm 3` (automatic layout).
-4. Find one case where preprocessing makes OCR worse. Keep it as a failure case.
+## Completion criterion
 
-## Explain it in an interview
-
-“Preprocessing changes the input distribution seen by the recognizer. It can
-remove nuisance variation such as skew and background texture, but aggressive
-thresholding can remove dots, accents, and thin strokes. Therefore I compare OCR
-before and after preprocessing with CER/WER rather than judging the image by eye.”
+You are finished when `output/` contains the intermediate images and both OCR
+texts, and you can explain why each transformation might help or hurt.

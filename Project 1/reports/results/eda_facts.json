@@ -1,0 +1,14 @@
+{
+  "weekly_price_change_rate": 0.011756722657659214,
+  "eligible_price_correlations": 30,
+  "median_sample_price_correlation": 0.04088847107857145,
+  "series": 30490,
+  "training_days": 1913,
+  "zero_sales_pct": 68.19627560783213,
+  "highest_weekday": "Saturday",
+  "lowest_weekday": "Wednesday",
+  "detrended_lag7": 0.7008733009911405,
+  "top20_series_share": 70.32190331595318,
+  "sampled_price_series": 92,
+  "sampled_positive_sales_without_price": 0
+}

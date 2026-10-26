@@ -1,0 +1,8 @@
+{
+  "selected": "lightgbm_refined",
+  "final_cutoff": 1941,
+  "seconds": 67.86153594199277,
+  "training_rows": 1707440,
+  "features": 26,
+  "submission": "/Users/moha/Machine-Learning-Project/Project 1/data/submissions/forecast_submission.csv"
+}

@@ -1,0 +1,27 @@
+# Local environments and Python caches
+.virtual/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Source CSVs and generated data
+/data/*.csv
+/data/interim/*
+!/data/interim/.gitkeep
+/data/processed/*
+!/data/processed/.gitkeep
+/data/submissions/*
+!/data/submissions/.gitkeep
+
+# Generated model artifacts
+/models/*
+!/models/.gitkeep

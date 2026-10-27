@@ -1,15 +1,22 @@
-# Comparison configuration
+# Forecast comparison configuration
 
-`comparison.json` selects all 30,490 series for ARIMA, weekly SARIMA, and
-LightGBM across three 28-day forecast windows. Statistical models use 728 daily
-observations per series. LightGBM pools every series and samples target dates
-every 13 days, with earlier observations available for feature warm-up.
+`tuning.json` defines the current ARIMA/SARIMA candidate grid, screening strata,
+and CPU settings. Screening uses development data and population weights.
+Each family's strongest alternative is confirmed against its original setting
+on all 30,490 series in both development windows. Final settings are selected
+separately for regular and intermittent demand using groups fixed from the
+90 days before the first development origin (regular: at least 80% selling days).
 
-The statistical fits run on eight CPU workers with 256-series checkpoints.
-Checkpoint identities include estimator code, input fingerprints, parameters,
-and package versions. Constant histories receive exact constant forecasts.
+`comparison.json` defines the common 28-day windows, the original statistical
+settings, and unchanged pooled LightGBM settings. `experiment.json` describes
+the earlier LightGBM study. Statistical batches use eight CPU workers and
+resumable checkpoints identified by estimator code, inputs, settings, and versions.
 
-`experiment.json` and `selection.json` describe the earlier full-panel study.
-Completed full-panel settings, versions, and the series-identity hash are recorded
-in `reports/results/full_panel_manifest.json`. Earlier 90-series results retain
-the `three_model_` prefix; current full-panel results use `full_panel_`.
+`reports/results/tuning_selection.json` freezes development-only selection;
+`tuned_manifest.json` records provenance. Current results use `tuned_` and
+`tuning_` prefixes. Earlier full-panel results use `full_panel_`; the older
+90-series experiment uses `three_model_`.
+
+Alternative SARIMA candidates difference observations before conditional fitting,
+then restore forecasts to sales units. The original SARIMA benchmark retains its
+full state-space fit. Unchanged ARIMA caches retain recorded provenance.

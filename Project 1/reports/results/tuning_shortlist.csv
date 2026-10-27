@@ -1,0 +1,3 @@
+family,candidate,mean_rmsse
+ARIMA,arima_011_728,0.7045900419023594
+SARIMA,sarima_011_0117_728,0.7051001840281756

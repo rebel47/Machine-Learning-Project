@@ -1,0 +1,188 @@
+{
+  "sample_per_stratum": 3,
+  "regular_sales_rate": 0.8,
+  "selection_history_days": 90,
+  "maxiter": 200,
+  "workers": 8,
+  "batch_size": 256,
+  "screen_batch_size": 64,
+  "seed": 42,
+  "run_version": "development-tuning-v2",
+  "candidates": [
+    {
+      "id": "arima_original",
+      "family": "ARIMA",
+      "order": [
+        1,
+        1,
+        1
+      ],
+      "seasonal_order": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "trend": "n",
+      "history_days": 728
+    },
+    {
+      "id": "sarima_original",
+      "family": "SARIMA",
+      "order": [
+        1,
+        1,
+        1
+      ],
+      "seasonal_order": [
+        1,
+        0,
+        0,
+        7
+      ],
+      "trend": "n",
+      "history_days": 728
+    },
+    {
+      "id": "arima_011_728",
+      "family": "ARIMA",
+      "order": [
+        0,
+        1,
+        1
+      ],
+      "seasonal_order": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "trend": "n",
+      "history_days": 728
+    },
+    {
+      "id": "arima_101c_728",
+      "family": "ARIMA",
+      "order": [
+        1,
+        0,
+        1
+      ],
+      "seasonal_order": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "trend": "c",
+      "history_days": 728
+    },
+    {
+      "id": "sarima_001_0117_728",
+      "family": "SARIMA",
+      "order": [
+        0,
+        0,
+        1
+      ],
+      "seasonal_order": [
+        0,
+        1,
+        1,
+        7
+      ],
+      "trend": "n",
+      "history_days": 728,
+      "simple_differencing": true
+    },
+    {
+      "id": "arima_011_364",
+      "family": "ARIMA",
+      "order": [
+        0,
+        1,
+        1
+      ],
+      "seasonal_order": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "trend": "n",
+      "history_days": 364
+    },
+    {
+      "id": "arima_101c_364",
+      "family": "ARIMA",
+      "order": [
+        1,
+        0,
+        1
+      ],
+      "seasonal_order": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "trend": "c",
+      "history_days": 364
+    },
+    {
+      "id": "sarima_001_0117_364",
+      "family": "SARIMA",
+      "order": [
+        0,
+        0,
+        1
+      ],
+      "seasonal_order": [
+        0,
+        1,
+        1,
+        7
+      ],
+      "trend": "n",
+      "history_days": 364,
+      "simple_differencing": true
+    },
+    {
+      "id": "sarima_011_0117_728",
+      "family": "SARIMA",
+      "order": [
+        0,
+        1,
+        1
+      ],
+      "seasonal_order": [
+        0,
+        1,
+        1,
+        7
+      ],
+      "trend": "n",
+      "history_days": 728,
+      "simple_differencing": true
+    },
+    {
+      "id": "sarima_101c_1007_364",
+      "family": "SARIMA",
+      "order": [
+        1,
+        0,
+        1
+      ],
+      "seasonal_order": [
+        1,
+        0,
+        0,
+        7
+      ],
+      "trend": "c",
+      "history_days": 364,
+      "simple_differencing": true
+    }
+  ],
+  "original_lightgbm_hash": "15deabecbd3e66d7d85411d7eac7a324fd004c435552e4839afa1592cfe55379"
+}

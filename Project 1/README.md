@@ -39,11 +39,19 @@ MAE/RMSE cover every series; mean RMSSE covers 30,490 series with defined traini
 
 ![MAE by forecast day](reports/figures/comparison_02_horizon.png)
 
-### Representative forecasts
+### Forecast examples and failure cases
 
-Examples from low-, medium-, and high-volume series selected using training data.
+Low-, median-, and high-volume examples selected using training data; the lowest
+and highest are extremes. Grey lines show 56 observed days before the forecast.
 
-![Actual sales and three-model forecasts](reports/figures/comparison_03_forecasts.png)
+![Observed history, actual sales, and three-model forecasts](reports/figures/comparison_03_forecasts.png)
+
+HOBBIES_1_124_WI_2 had only one sale in its 728-day training window;
+FOODS_2_008_WI_3 had no sales in its last 56 training days. All models miss their
+subsequent sales recovery. Zero sales alone cannot establish the reason.
+For FOODS_3_090_CA_3, LightGBM tracks weekly variation and slightly improves MAE,
+but SARIMA has lower RMSE. Fixed ARIMA/SARIMA orders flatten over the horizon;
+these examples expose limitations despite the aggregate ranking.
 
 ## Final comparison
 

@@ -1,12 +1,15 @@
 # Comparison configuration
 
-`comparison.json` controls the current ARIMA, weekly SARIMA, and LightGBM
-comparison: 90 matched series, 28-day forecasts, 728 training-target days,
-fixed statistical orders, and LightGBM parameters. The 90 series are sampled
-using only data before the earliest forecast window, across stores, categories,
-and volume bands. LightGBM pools all series and uses earlier feature warm-up
-history; the statistical models fit the recent 728 observations separately.
+`comparison.json` selects all 30,490 series for ARIMA, weekly SARIMA, and
+LightGBM across three 28-day forecast windows. Statistical models use 728 daily
+observations per series. LightGBM pools every series and samples target dates
+every 13 days, with earlier observations available for feature warm-up.
+
+The statistical fits run on eight CPU workers with 256-series checkpoints.
+Checkpoint identities include estimator code, input fingerprints, parameters,
+and package versions. Constant histories receive exact constant forecasts.
 
 `experiment.json` and `selection.json` describe the earlier full-panel study.
-Current settings, versions, and sample IDs are recorded in
-`reports/results/three_model_manifest.json`.
+Completed full-panel settings, versions, and the series-identity hash are recorded
+in `reports/results/full_panel_manifest.json`. Earlier 90-series results retain
+the `three_model_` prefix; current full-panel results use `full_panel_`.

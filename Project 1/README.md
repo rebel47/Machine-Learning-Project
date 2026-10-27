@@ -11,21 +11,23 @@ with machine learning over a 28-day horizon.
 | SARIMA | SARIMA(1,1,1)(1,0,0,7) | Adds a weekly seasonal component to each series. |
 | LightGBM | 200 trees, 31 leaves, learning rate 0.05 | Uses calendar and lag features to correct a recent weekday-average forecast. |
 
-ARIMA and SARIMA fit each series separately; LightGBM learns across related series.
+ARIMA and SARIMA each fit all 30,490 series using 728 recent daily observations.
+LightGBM learns across all 30,490 series using temporally sampled training targets.
 
 ## Evaluation
 
-The three models forecast the same **90 product/store series** for **28 days**,
-balanced across stores, categories, and training-volume bands. Two development
-windows precede the local test, **2016-04-25 to 2016-05-22**. The local test was
-previously inspected, so this is a retrospective comparison. RMSSE is averaged
-equally across the sampled series. All 540/540 statistical fits converged.
+All three models forecast **30,490 product/store series** for **28 days**.
+Two development windows precede the local test, **2016-04-25 to 2016-05-22**.
+The previously inspected local test makes this a retrospective comparison.
+MAE/RMSE cover every series; mean RMSSE covers 30,490 series with defined training scales.
+182,669/182,760 optimized statistical fits converged;
+180 constant-history windows receive exact constant forecasts.
 
 | Model | Development RMSSE | Local-test RMSSE | Local-test MAE | Local-test RMSE |
 | --- | --- | --- | --- | --- |
-| SARIMA | 0.7213 | 0.6865 | 0.9504 | 1.7022 |
-| ARIMA | 0.7225 | 0.6868 | 0.9511 | 1.7012 |
-| LightGBM | 0.7276 | 0.6959 | 0.9390 | 1.7125 |
+| SARIMA | 0.7356 | 0.7613 | 1.0538 | 2.2030 |
+| ARIMA | 0.7360 | 0.7617 | 1.0570 | 2.2181 |
+| LightGBM | 0.7377 | 0.7595 | 1.0473 | 2.1532 |
 
 ## Comparison graphs
 
@@ -45,7 +47,6 @@ Examples from low-, medium-, and high-volume series selected using training data
 
 ## Final comparison
 
-**SARIMA** has the lowest mean RMSSE, **LightGBM** the lowest MAE,
-and **ARIMA** the lowest RMSE. The differences are small, particularly
-between ARIMA and SARIMA. These results describe this matched sample with
-fixed model settings.
+**LightGBM** has the lowest local-test mean RMSSE, MAE, and RMSE. **SARIMA** has the lowest average development RMSSE.
+These scores and graphs cover all **30,490 series**, using fixed model settings
+and common forecast windows.

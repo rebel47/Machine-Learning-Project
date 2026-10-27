@@ -1,0 +1,274 @@
+{
+  "config": {
+    "horizon": 28,
+    "development_cutoffs": [
+      1857,
+      1885
+    ],
+    "test_cutoff": 1913,
+    "history_days": 728,
+    "training_stride": 13,
+    "seed": 42,
+    "n_estimators": 200,
+    "num_leaves": 31,
+    "learning_rate": 0.05,
+    "baseline_floor": 0.05,
+    "arima_order": [
+      1,
+      1,
+      1
+    ],
+    "seasonal_order": [
+      1,
+      0,
+      0,
+      7
+    ],
+    "maxiter": 200,
+    "series_scope": "all",
+    "workers": 8,
+    "batch_size": 256,
+    "run_version": "full-panel-v1"
+  },
+  "inputs": {
+    "calendar.csv": {
+      "bytes": 103469,
+      "mtime_ns": 1591016366000000000
+    },
+    "sales_train_evaluation.csv": {
+      "bytes": 121736518,
+      "mtime_ns": 1591016368000000000
+    },
+    "sales_train_validation.csv": {
+      "bytes": 120007726,
+      "mtime_ns": 1591016376000000000
+    },
+    "sample_submission.csv": {
+      "bytes": 5228786,
+      "mtime_ns": 1591016386000000000
+    },
+    "sell_prices.csv": {
+      "bytes": 203395785,
+      "mtime_ns": 1591016386000000000
+    }
+  },
+  "code_hash": "8c4ba130ecd94e17ebb6f200fe038f06fbe7bc7a463929766a6ea9329577fd16",
+  "versions": {
+    "numpy": "2.4.6",
+    "pandas": "3.1.0",
+    "statsmodels": "0.15.0",
+    "lightgbm": "4.7.0"
+  },
+  "run_id": "a7d982227033ecec",
+  "series_count": 30490,
+  "python": "3.11.16",
+  "series_ids_hash": "e8c27160d6ebe8f913387d672c6954aeb67866016b1367d3a47e346945312b23",
+  "checkpoint_provenance": {
+    "source_run": "16c13b81750365b3",
+    "target_run": "a7d982227033ecec",
+    "reused_batches": 347,
+    "reason": "Forecast-finiteness retries only; all reused checkpoints have finite nonnegative forecasts and unchanged default-path forecasts were verified exactly",
+    "source_cache_identity": {
+      "config": {
+        "arima_order": [
+          1,
+          1,
+          1
+        ],
+        "seasonal_order": [
+          1,
+          0,
+          0,
+          7
+        ],
+        "history_days": 728,
+        "maxiter": 200,
+        "horizon": 28,
+        "batch_size": 256,
+        "run_version": "full-panel-v1"
+      },
+      "inputs": {
+        "calendar.csv": {
+          "bytes": 103469,
+          "mtime_ns": 1591016366000000000
+        },
+        "sales_train_evaluation.csv": {
+          "bytes": 121736518,
+          "mtime_ns": 1591016368000000000
+        },
+        "sales_train_validation.csv": {
+          "bytes": 120007726,
+          "mtime_ns": 1591016376000000000
+        },
+        "sample_submission.csv": {
+          "bytes": 5228786,
+          "mtime_ns": 1591016386000000000
+        },
+        "sell_prices.csv": {
+          "bytes": 203395785,
+          "mtime_ns": 1591016386000000000
+        }
+      },
+      "versions": {
+        "numpy": "2.4.6",
+        "pandas": "3.1.0",
+        "statsmodels": "0.15.0",
+        "lightgbm": "4.7.0"
+      },
+      "estimator_hash": "62b3b418d44bb839331986c55f4c934563d7ff7e38fd3e475d8e58e065eb1830"
+    },
+    "target_cache_identity": {
+      "config": {
+        "arima_order": [
+          1,
+          1,
+          1
+        ],
+        "seasonal_order": [
+          1,
+          0,
+          0,
+          7
+        ],
+        "history_days": 728,
+        "maxiter": 200,
+        "horizon": 28,
+        "batch_size": 256,
+        "run_version": "full-panel-v1"
+      },
+      "inputs": {
+        "calendar.csv": {
+          "bytes": 103469,
+          "mtime_ns": 1591016366000000000
+        },
+        "sales_train_evaluation.csv": {
+          "bytes": 121736518,
+          "mtime_ns": 1591016368000000000
+        },
+        "sales_train_validation.csv": {
+          "bytes": 120007726,
+          "mtime_ns": 1591016376000000000
+        },
+        "sample_submission.csv": {
+          "bytes": 5228786,
+          "mtime_ns": 1591016386000000000
+        },
+        "sell_prices.csv": {
+          "bytes": 203395785,
+          "mtime_ns": 1591016386000000000
+        }
+      },
+      "versions": {
+        "numpy": "2.4.6",
+        "pandas": "3.1.0",
+        "statsmodels": "0.15.0",
+        "lightgbm": "4.7.0"
+      },
+      "estimator_hash": "98efb65ad9f6a77905d16940eb74525c09a45d0522f45788bc98762fffcbf4ca"
+    },
+    "ancestor_provenance": {
+      "source_run": "fbb93bafb9bf532e",
+      "target_run": "16c13b81750365b3",
+      "reused_batches": 144,
+      "reason": "Exception-only initialization retry and serialization cleanup; unchanged default-path forecasts verified exactly",
+      "source_cache_identity": {
+        "config": {
+          "arima_order": [
+            1,
+            1,
+            1
+          ],
+          "seasonal_order": [
+            1,
+            0,
+            0,
+            7
+          ],
+          "history_days": 728,
+          "maxiter": 200,
+          "horizon": 28,
+          "batch_size": 256,
+          "run_version": "full-panel-v1"
+        },
+        "inputs": {
+          "calendar.csv": {
+            "bytes": 103469,
+            "mtime_ns": 1591016366000000000
+          },
+          "sales_train_evaluation.csv": {
+            "bytes": 121736518,
+            "mtime_ns": 1591016368000000000
+          },
+          "sales_train_validation.csv": {
+            "bytes": 120007726,
+            "mtime_ns": 1591016376000000000
+          },
+          "sample_submission.csv": {
+            "bytes": 5228786,
+            "mtime_ns": 1591016386000000000
+          },
+          "sell_prices.csv": {
+            "bytes": 203395785,
+            "mtime_ns": 1591016386000000000
+          }
+        },
+        "versions": {
+          "numpy": "2.4.6",
+          "pandas": "3.1.0",
+          "statsmodels": "0.15.0",
+          "lightgbm": "4.7.0"
+        },
+        "estimator_hash": "cfcebc744b445b39a246ceca569805300d3272b229e102d19152b739c8f51a8a"
+      },
+      "target_cache_identity": {
+        "config": {
+          "arima_order": [
+            1,
+            1,
+            1
+          ],
+          "seasonal_order": [
+            1,
+            0,
+            0,
+            7
+          ],
+          "history_days": 728,
+          "maxiter": 200,
+          "horizon": 28,
+          "batch_size": 256,
+          "run_version": "full-panel-v1"
+        },
+        "inputs": {
+          "calendar.csv": {
+            "bytes": 103469,
+            "mtime_ns": 1591016366000000000
+          },
+          "sales_train_evaluation.csv": {
+            "bytes": 121736518,
+            "mtime_ns": 1591016368000000000
+          },
+          "sales_train_validation.csv": {
+            "bytes": 120007726,
+            "mtime_ns": 1591016376000000000
+          },
+          "sample_submission.csv": {
+            "bytes": 5228786,
+            "mtime_ns": 1591016386000000000
+          },
+          "sell_prices.csv": {
+            "bytes": 203395785,
+            "mtime_ns": 1591016386000000000
+          }
+        },
+        "versions": {
+          "numpy": "2.4.6",
+          "pandas": "3.1.0",
+          "statsmodels": "0.15.0",
+          "lightgbm": "4.7.0"
+        },
+        "estimator_hash": "62b3b418d44bb839331986c55f4c934563d7ff7e38fd3e475d8e58e065eb1830"
+      }
+    }
+  }
+}

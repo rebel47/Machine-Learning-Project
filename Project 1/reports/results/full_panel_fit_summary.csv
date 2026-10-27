@@ -1,0 +1,3 @@
+model,series_windows,optimized,converged,constant,initialization_retries,warnings,negative_raw_forecasts
+ARIMA,91470,91380,91325,90,1,308,115
+SARIMA,91470,91380,91344,90,1,261,1325

@@ -1,6 +1,9 @@
 {
   "horizon": 28,
-  "development_cutoffs": [1857, 1885],
+  "development_cutoffs": [
+    1857,
+    1885
+  ],
   "test_cutoff": 1913,
   "history_days": 728,
   "training_stride": 13,
@@ -9,8 +12,20 @@
   "num_leaves": 31,
   "learning_rate": 0.05,
   "baseline_floor": 0.05,
-  "arima_order": [1, 1, 1],
-  "seasonal_order": [1, 0, 0, 7],
+  "arima_order": [
+    1,
+    1,
+    1
+  ],
+  "seasonal_order": [
+    1,
+    0,
+    0,
+    7
+  ],
   "maxiter": 200,
-  "sample_series": 90
+  "series_scope": "all",
+  "workers": 8,
+  "batch_size": 256,
+  "run_version": "full-panel-v1"
 }

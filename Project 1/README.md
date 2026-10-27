@@ -39,19 +39,22 @@ MAE/RMSE cover every series; mean RMSSE covers 30,490 series with defined traini
 
 ![MAE by forecast day](reports/figures/comparison_02_horizon.png)
 
-### Forecast examples and failure cases
+### Frequent-seller forecasts
 
-Low-, median-, and high-volume examples selected using training data; the lowest
-and highest are extremes. Grey lines show 56 observed days before the forecast.
+897 product/store series sold on at least 95% of the 90 days before
+the first development window. The examples are the median-volume eligible series
+within each category, selected without forecast-period outcomes. All three models
+already forecast these products. Grey lines show 56 days of observed history.
 
-![Observed history, actual sales, and three-model forecasts](reports/figures/comparison_03_forecasts.png)
+![Frequent sellers: observed history and three-model forecasts](reports/figures/comparison_04_frequent_sellers.png)
+### Sparse-demand and high-volume failure cases
 
-HOBBIES_1_124_WI_2 had only one sale in its 728-day training window;
-FOODS_2_008_WI_3 had no sales in its last 56 training days. All models miss their
-subsequent sales recovery. Zero sales alone cannot establish the reason.
-For FOODS_3_090_CA_3, LightGBM tracks weekly variation and slightly improves MAE,
-but SARIMA has lower RMSE. Fixed ARIMA/SARIMA orders flatten over the horizon;
-these examples expose limitations despite the aggregate ranking.
+The earlier low-, median-, and high-volume examples remain below. HOBBIES_1_124_WI_2
+had one sale in its 728-day training window; FOODS_2_008_WI_3 had no sales in its
+last 56 training days. All models miss their subsequent recovery. Zero sales alone
+cannot establish the reason. For FOODS_3_090_CA_3, LightGBM slightly improves MAE,
+but SARIMA has lower RMSE. Fixed statistical orders flatten over the horizon.
+![Earlier examples and forecast limitations](reports/figures/comparison_03_forecasts.png)
 
 ## Final comparison
 
